@@ -7,13 +7,13 @@
 ## Steps followed to perform the Analysis
 --
 * Below are the list of activities performed which would showcase the usage of machine learning and nerual network
-  * Preprocessing the data using pandas and scikit-learn's StarndardScaler()
-  * As next step, compile, train and evaluating the neural network model. 
+  * Data Preprocessing Step: Preprocessing the data using pandas and scikit-learn's StarndardScaler()
+  * Compile, Train nd Evaluate Step: As next step, compile, train and evaluating the neural network model. 
 
 ## Results
 --
 
-### --**Data Preprocessing**-- <br>
+### --**Data Preprocessing Step**-- <br>
 * Within this dataset are a number of columns that capture metadata about each organization. These columns used as features and target varibales for this analysis. <br>
 <br>
 
@@ -32,17 +32,54 @@
   * ASK_AMT—Funding amount requested --**Feature Variable**--
   * IS_SUCCESSFUL—Was the money used effectively  --**TARGET Variable**--
 
+### --**Compile, Train and Evaluate Step**-- <br>
+* --**The first model has 3 layers (Starter_Code.ipynb JUYPTER SOURCE FILE)**--<br>
+  * First hidden layer has two times of the features as neurons and uses `relu` as activation function.
+  * Second hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * final output layer has 1 unit of neuron and has `sigmoid` as activation function.
+   --**Using APPLICATION_TYPE for binning**-- higher value for other category like <500 or <1000 
+   ![Alt text](image.png)
 
+* --**The Second model has 3 layers (AlphabetSoupCharity_Optimization_dropping_MoreColumns_worst.ipynb JUYPTER SOURCE FILE)**--<br>
+  * First hidden layer has two times of the features as neurons and uses `relu` as activation function.
+  * Second hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * final output layer has 1 unit of neuron and has `sigmoid` as activation function.  
+    --**Dropped More Additional Columns**-- This is performed worst as the accuracy got reduced. Not preferred method 
+    --**Using APPLICATION_TYPE for binning**-- higher value for other category like <500 or <1000 
 
-How many neurons, layers, and activation functions did you select for your neural network model, and why?
-Were you able to achieve the target model performance?
-What steps did you take in your attempts to increase model performance?
+* --**The Third model has 3 layers (AlphabetSoupCharity_Optimization_dropping_FewerColumns_didn'twork.ipynb JUYPTER SOURCE FILE)**--<br>
+  * First hidden layer has two times of the features as neurons and uses `relu` as activation function.
+  * Second hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * final output layer has 1 unit of neuron and has `sigmoid` as activation function.  
+    --**Dropped only EIN Column**-- This model didn't get executed and always crashed. 
+    --**Using APPLICATION_TYPE for binning**-- higher value for other category like <500 or <1000 
 
+* --**The fourth model has 4 layers (AlphabetSoupCharity_Optimization_Second_Best.ipynb JUYPTER SOURCE FILE)**--<br>
+  * First hidden layer has two times of the features as neurons and uses `relu` as activation function.
+  * Second hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * Additional added hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * Final output layer has 1 unit of neuron and has `sigmoid` as activation function.  
+    --**Dropped only EIN Column**--  and --**Using NAME instead of APPLICATION_TYPE for binning**-- lower value for other category like <5 or <10
+    --**<b>Accuracy reached 78% <b>**-- 
+
+* --**The final best  model has 4 layers (AlphabetSoupCharity_Optimization_Second_Best.ipynb JUYPTER SOURCE FILE)**--<br>
+  * First hidden layer has two times of the features as neurons and uses `relu` as activation function.
+  * Second hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * Additional added hidden layer has half the times of the feature count as neurons and uses `relu` as activation function.
+  * Final output layer has 1 unit of neuron and has `sigmoid` as activation function.  
+    --**Dropped only EIN Column**--  and --**Using NAME instead of APPLICATION_TYPE for binning**-- lower value for other category like <1 or <5
+    --**<b>Accuracy reached 79% <b>**-- 
+  ![Alt text](image-1.png)
 
 ## Summary
 --<br>
-Both models performed good for health loan status prediction as the precision and recall score is at 100%. Hence the performance between models will be compared against High-risk loan status prediction.<br>
+Using the Machine learning and Neural network, optimized tensor flow model reached accuracy of 79%.<br>
 <br>
-It is important to have high Precision and high recall values as "A high precision score indicates less false positives and high recall score indicates less false negative. Based on this consideration, RandomOverSampler model seems to perform better when compared to the 'train_test_split' model. Even though the percentage of false positive (precision score) score is same in both the models, RandomOverSampler model showcases better recall score and thus reducing false negative score. Still with only 87% precision rate false positive could lead to potential loss of customer. <br>
+Based on the optimization appraoch it is recommended <br>
+
+  * to have idetification column  
+  * use the identification column for binning with 
+  * mimizing the records for genric 'other' category in binning
+  * having minimal for 4 layers
 <br>
-Based on the above explanation I would recommend the `RandomOverSampler` model when compared to '`train_test_split` model due to its improved recall accuracy.
+
